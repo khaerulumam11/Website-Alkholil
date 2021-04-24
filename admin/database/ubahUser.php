@@ -13,8 +13,9 @@ session_start();
 include 'config.php';
 
 // form penanganan
-$deskripsi = $_POST['deskripsi'];
-$program = $_POST['program'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$id = $_GET['id'];
 //$dokumen_pena = 'dokumen';
 
 $create_time=date("Y-m-d H:i:s",time());
@@ -22,7 +23,7 @@ $create_time=date("Y-m-d H:i:s",time());
 // $deskripsi_log = 'Menambahkan Data Penanganan';
 // $result_log = mysqli_query( $mysqli, "INSERT INTO tb_log_activity (`nama_user`, `deskripsi`, `status`) VALUES ('$nama_user','$deskripsi_log','tambah')" );
 
-$result = mysqli_query( $mysqli, "INSERT INTO program( `DESKRIPSI`,`PROGRAM`,`CREATE_TIME`) VALUES ('$deskripsi','$program','$create_time')" );
+ $result = mysqli_query( $mysqli, "UPDATE `admin` SET `USERNAME`='$username',`PASSWORD`='$password' WHERE ADMIN_ID='$id'" );
 
 // Show message when user added
 if ( $result) {
@@ -30,14 +31,14 @@ if ( $result) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Program Berhasil Ditambahkan',
+				title: 'Data User Berhasil Diubah',
 				type: 'success',
 				timer: 1500,
 				showConfirmButton: true
 			});		
 		},20);	
 	window.setTimeout(function(){ 
-			window.location.replace('../dataBeranda.php');
+			window.location.replace('../userLogin.php');
 		} ,1500);
 	  </script>";
 } else {
@@ -45,7 +46,7 @@ if ( $result) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Program Gagal Ditambahkan',
+				title: 'Data User Gagal Diubah',
 				type: 'error',
 				timer: 1500,
 				showConfirmButton: true

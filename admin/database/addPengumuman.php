@@ -13,16 +13,23 @@ session_start();
 include 'config.php';
 
 // form penanganan
+$judul = $_POST['judul'];
 $deskripsi = $_POST['deskripsi'];
-$program = $_POST['program'];
+$tglpengumuman = $_POST['tglpengumuman'];
+
 //$dokumen_pena = 'dokumen';
 
 $create_time=date("Y-m-d H:i:s",time());
-
+$error = array();
+$extension = array( 'jpeg', 'jpg', 'png', 'gif' );
+$rand = rand();
+$lokasi_file = $_FILES['foto_beranda']['tmp_name'];
+$nama_file   = rand( 0, 99999999 ) . '_' . $_FILES['foto_beranda']['name'];
+$folder_tn = "../dokumen/fotoPengumuman/$nama_file";
 // $deskripsi_log = 'Menambahkan Data Penanganan';
 // $result_log = mysqli_query( $mysqli, "INSERT INTO tb_log_activity (`nama_user`, `deskripsi`, `status`) VALUES ('$nama_user','$deskripsi_log','tambah')" );
-
-$result = mysqli_query( $mysqli, "INSERT INTO program( `DESKRIPSI`,`PROGRAM`,`CREATE_TIME`) VALUES ('$deskripsi','$program','$create_time')" );
+if ( move_uploaded_file( $lokasi_file, $folder_tn ) ) {
+$result = mysqli_query( $mysqli, "INSERT INTO pengumuman( `JUDUL_PENGUMUMAN`,`DESKRIPSI_PENGUMUMAN`,`TGL_PENGUMUMAN`, `GAMBAR`, `CREATE_TIME`) VALUES ('$judul','$deskripsi','$tglpengumuman', '$nama_file','$create_time')" );
 
 // Show message when user added
 if ( $result) {
@@ -30,14 +37,14 @@ if ( $result) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Program Berhasil Ditambahkan',
+				title: 'Data Pengumuman Berhasil Ditambahkan',
 				type: 'success',
 				timer: 1500,
 				showConfirmButton: true
 			});		
 		},20);	
 	window.setTimeout(function(){ 
-			window.location.replace('../dataBeranda.php');
+			window.location.replace('../pengumuman.php');
 		} ,1500);
 	  </script>";
 } else {
@@ -45,7 +52,7 @@ if ( $result) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Program Gagal Ditambahkan',
+				title: 'Data Pengumuman Gagal Ditambahkan',
 				type: 'error',
 				timer: 1500,
 				showConfirmButton: true
@@ -56,7 +63,7 @@ if ( $result) {
 		} ,1500);	
 	  </script>";
 }
-
+}
 ?>
     <script type='text/javascript' src='../alert/alert/js/jquery-1.9.1.min.js'></script>
     <script src='../alert/alert/js/sweetalert.min.js'></script>

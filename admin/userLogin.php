@@ -19,7 +19,7 @@ $username = $_SESSION["username"];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Profil Yayasan</title>
+    <title>User Login</title>
     <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -157,7 +157,7 @@ $username = $_SESSION["username"];
 
             <div class="row wrapper border-bottom page-heading">
                 <div class="col-lg-12">
-                    <h2 style="margin-top:3%"><b>Profil Yayasan</b></h2>
+                    <h2 style="margin-top:3%"><b>User Login</b></h2>
 
                 </div>
                 <div class="col-lg-2">
@@ -170,21 +170,34 @@ $username = $_SESSION["username"];
                         <div class="ibox float-e-margins">
 
                             <div class="ibox-content">
-                                <label style="font-size:20px; margin-bottom:-5%" for="">Tambahkan Data</label>
+                                <label style="font-size:20px; margin-bottom:-5%" for="">Kelola Data</label>
                                 <hr>
-                                <form name="form1" id="form" method="post" action="database/addProfilYayasan.php"
+                                <?php
+                                         include 'database/config.php';
+                                            $data = mysqli_query($mysqli, "select * from admin where ADMIN_ID = '$id_user'");
+                                            while ($d = mysqli_fetch_array($data)) {
+                                            ?>
+                                <form name="form1" id="form" method="post"
+                                    action="database/ubahUser.php?id=<?php echo $d['ADMIN_ID']; ?>"
                                     enctype="multipart/form-data" class="form-horizontal">
 
-
-                                    <div class="form-group"><label class="col-lg-2 control-label">Deskripsi*
-                                        </label>
-                                        <div class="col-lg-8">
-                                            <textarea id="editor2" style="height:40%" name="deskripsi" rows="6"
-                                                cols="40" class="form-control"></textarea>
-
-                                            <!-- <input id="penjelasan" name="penjelasan" type="text" class="form-control"> -->
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Username* </label>
+                                        <div class="col-lg-4"><input id="username" name="username" type="text"
+                                                class="form-control required" value="<?php echo $d['USERNAME']; ?>">
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Password* </label>
+                                        <div class="col-lg-4"><input id="password" name="password" type="password"
+                                                class="form-control required" value="<?php echo $d['PASSWORD']; ?>">
+                                        </div>
+                                        <i id="myInput" data-feather="eye" style="margin-top:0.5%"
+                                            onclick="showPass()"></i>
+                                    </div>
+
+
 
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
@@ -195,73 +208,26 @@ $username = $_SESSION["username"];
                                         </div>
                                     </div>
                                 </form>
-
+                                <?php } ?>
 
                             </div>
                         </div>
-                        <div class="ibox-content">
-                            <label style="font-size:20px; margin-bottom:-5%" for="">Pencarian</label>
-                            <hr>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
 
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align:center">No</th>
-                                            <th style="text-align:center">Deskripsi</th>
-                                            <th style="text-align:center">Aksi</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            include 'database/config.php';
-                                            $no = 1;
-                                            $data = mysqli_query($mysqli, "select * from profilyayasan");
-                                            while ($d = mysqli_fetch_array($data)) {
-                                            ?>
-                                        <tr class="gradeX">
-                                            <td style="text-align:center"><a style="text-decoration:none"
-                                                    href="bangunan_detail.php?id_bangunan=<?php echo $d['BERANDA_ID']; ?>">
-                                                    <?php echo $no?></a></td>
-
-                                            <td><?php echo $d['DESKRIPSI']; ?></td>
-
-
-                                            <td style="text-align:center">
-                                                <a href=""><i data-feather="eye" style="margin-right:10%"></i></a>
-                                                <!-- <a href=" #"><img src="img/edit-2.png"></a> -->
-                                                <a href="database/delDataProfil.php?id=<?php echo $d['PROFILYAYASAN_ID']; ?>"
-                                                    onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
-                                                        data-feather="trash-2"
-                                                        style="margin-right:2%; color:red"></i></a>
-
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        $no++;
-                                            }
-                                            ?>
-                                    </tbody>
-                                    <!-- <tfoot>
-                                            <tr>
-                                                <th>ID Bangunan</th>
-                                                <th>Nama</th>
-                                                <th>Fungsi</th>
-                                                <th>ODP</th>
-                                                <th>Didirikan</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot> -->
-                                </table>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+    function showPass() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    </script>
     <script src="https://cdn.ckeditor.com/4.16.0/standard-all/ckeditor.js"></script>
     <script src="js/plugins/dataTables/datatables.min.js"></script>
     <script>

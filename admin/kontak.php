@@ -19,7 +19,7 @@ $username = $_SESSION["username"];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Profil Yayasan</title>
+    <title>Kontak</title>
     <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -157,7 +157,7 @@ $username = $_SESSION["username"];
 
             <div class="row wrapper border-bottom page-heading">
                 <div class="col-lg-12">
-                    <h2 style="margin-top:3%"><b>Profil Yayasan</b></h2>
+                    <h2 style="margin-top:3%"><b>Kontak</b></h2>
 
                 </div>
                 <div class="col-lg-2">
@@ -170,19 +170,48 @@ $username = $_SESSION["username"];
                         <div class="ibox float-e-margins">
 
                             <div class="ibox-content">
-                                <label style="font-size:20px; margin-bottom:-5%" for="">Tambahkan Data</label>
+                                <label style="font-size:20px; margin-bottom:-5%" for="">Kelola Data</label>
                                 <hr>
-                                <form name="form1" id="form" method="post" action="database/addProfilYayasan.php"
+                                <form name="form1" id="form" method="post" action="database/addKontak.php"
                                     enctype="multipart/form-data" class="form-horizontal">
 
 
-                                    <div class="form-group"><label class="col-lg-2 control-label">Deskripsi*
-                                        </label>
-                                        <div class="col-lg-8">
-                                            <textarea id="editor2" style="height:40%" name="deskripsi" rows="6"
-                                                cols="40" class="form-control"></textarea>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Alamat* </label>
+                                        <div class="col-lg-8"><input id="alamat" name="alamat" type="text"
+                                                class="form-control required">
+                                        </div>
+                                    </div>
 
-                                            <!-- <input id="penjelasan" name="penjelasan" type="text" class="form-control"> -->
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Telepon* </label>
+                                        <div class="col-lg-8"><input id="telepon" name="telepon" type="phone"
+                                                class="form-control required">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Email* </label>
+                                        <div class="col-lg-8"><input id="email" name="email" type="email"
+                                                class="form-control required">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Jam Operasional* </label>
+                                        <div class="col-lg-8"><input id="jamoperasional" name="jamoperasional"
+                                                type="text" class="form-control required">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Lokasi* </label>
+                                        <div class="col-lg-2"><input id="latitude" name="latitude" type="text"
+                                                class="form-control required" step="0.01" placeholder="Latitude">
+                                        </div>
+
+                                        <div class="col-lg-2"><input id="longitude" name="longitude" type="text"
+                                                class="form-control required" step="0.01" placeholder="Longitude">
                                         </div>
                                     </div>
 
@@ -208,7 +237,12 @@ $username = $_SESSION["username"];
                                     <thead>
                                         <tr>
                                             <th style="text-align:center">No</th>
-                                            <th style="text-align:center">Deskripsi</th>
+                                            <th style="text-align:center">Alamat</th>
+                                            <th style="text-align:center">Telepon</th>
+                                            <th style="text-align:center">Email</th>
+                                            <th style="text-align:center">Jam Operasional</th>
+                                            <th style="text-align:center">Latitude</th>
+                                            <th style="text-align:center">Longitude</th>
                                             <th style="text-align:center">Aksi</th>
 
                                         </tr>
@@ -217,7 +251,7 @@ $username = $_SESSION["username"];
                                         <?php
                                             include 'database/config.php';
                                             $no = 1;
-                                            $data = mysqli_query($mysqli, "select * from profilyayasan");
+                                            $data = mysqli_query($mysqli, "select * from kontak");
                                             while ($d = mysqli_fetch_array($data)) {
                                             ?>
                                         <tr class="gradeX">
@@ -225,13 +259,18 @@ $username = $_SESSION["username"];
                                                     href="bangunan_detail.php?id_bangunan=<?php echo $d['BERANDA_ID']; ?>">
                                                     <?php echo $no?></a></td>
 
-                                            <td><?php echo $d['DESKRIPSI']; ?></td>
+                                            <td><?php echo $d['ALAMAT']; ?></td>
+                                            <td><?php echo $d['TELEPON']; ?></td>
+                                            <td><?php echo $d['EMAIL']; ?></td>
+                                            <td><?php echo $d['JAMOPERASIONAL']; ?></td>
+                                            <td><?php echo $d['LOKASI_LATITUDE']; ?></td>
+                                            <td><?php echo $d['LOKASI_LONGITUDE']; ?></td>
 
 
                                             <td style="text-align:center">
                                                 <a href=""><i data-feather="eye" style="margin-right:10%"></i></a>
                                                 <!-- <a href=" #"><img src="img/edit-2.png"></a> -->
-                                                <a href="database/delDataProfil.php?id=<?php echo $d['PROFILYAYASAN_ID']; ?>"
+                                                <a href="database/delDataKontak.php?id=<?php echo $d['KONTAK_ID']; ?>"
                                                     onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
                                                         data-feather="trash-2"
                                                         style="margin-right:2%; color:red"></i></a>

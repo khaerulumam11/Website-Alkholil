@@ -19,7 +19,7 @@ $username = $_SESSION["username"];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Profil Yayasan</title>
+    <title>Pengumuman</title>
     <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -157,7 +157,7 @@ $username = $_SESSION["username"];
 
             <div class="row wrapper border-bottom page-heading">
                 <div class="col-lg-12">
-                    <h2 style="margin-top:3%"><b>Profil Yayasan</b></h2>
+                    <h2 style="margin-top:3%"><b>Pengumuman</b></h2>
 
                 </div>
                 <div class="col-lg-2">
@@ -172,9 +172,22 @@ $username = $_SESSION["username"];
                             <div class="ibox-content">
                                 <label style="font-size:20px; margin-bottom:-5%" for="">Tambahkan Data</label>
                                 <hr>
-                                <form name="form1" id="form" method="post" action="database/addProfilYayasan.php"
+                                <form name="form1" id="form" method="post" action="database/addPengumuman.php"
                                     enctype="multipart/form-data" class="form-horizontal">
 
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Tanggal Pengumuman* </label>
+                                        <div class="col-lg-4"><input id="tglpengumuman" name="tglpengumuman" type="date"
+                                                class="form-control required">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Judul* </label>
+                                        <div class="col-lg-8"><input id="judul" name="judul" type="text"
+                                                class="form-control required">
+                                        </div>
+                                    </div>
 
                                     <div class="form-group"><label class="col-lg-2 control-label">Deskripsi*
                                         </label>
@@ -185,6 +198,14 @@ $username = $_SESSION["username"];
                                             <!-- <input id="penjelasan" name="penjelasan" type="text" class="form-control"> -->
                                         </div>
                                     </div>
+
+                                    <div class="form-group"><label class="col-lg-2 control-label">Gambar</label>
+                                        <div class="col-lg-8">
+                                            <input id="foto_penanganan" name="foto_beranda" type="file" accept="image/*"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+
 
                                     <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
@@ -208,7 +229,10 @@ $username = $_SESSION["username"];
                                     <thead>
                                         <tr>
                                             <th style="text-align:center">No</th>
+                                            <th style="text-align:center">Tanggal Pengumuman</th>
+                                            <th style="text-align:center">Judul</th>
                                             <th style="text-align:center">Deskripsi</th>
+                                            <th style="text-align:center">Gambar</th>
                                             <th style="text-align:center">Aksi</th>
 
                                         </tr>
@@ -217,7 +241,7 @@ $username = $_SESSION["username"];
                                         <?php
                                             include 'database/config.php';
                                             $no = 1;
-                                            $data = mysqli_query($mysqli, "select * from profilyayasan");
+                                            $data = mysqli_query($mysqli, "select * from pengumuman");
                                             while ($d = mysqli_fetch_array($data)) {
                                             ?>
                                         <tr class="gradeX">
@@ -225,13 +249,15 @@ $username = $_SESSION["username"];
                                                     href="bangunan_detail.php?id_bangunan=<?php echo $d['BERANDA_ID']; ?>">
                                                     <?php echo $no?></a></td>
 
-                                            <td><?php echo $d['DESKRIPSI']; ?></td>
-
+                                            <td><?php echo $d['TGL_PENGUMUMAN']; ?></td>
+                                            <td><?php echo $d['JUDUL_PENGUMUMAN']; ?></td>
+                                            <td><?php echo $d['DESKRIPSI_PENGUMUMAN']; ?></td>
+                                            <td><?php echo $d['GAMBAR']; ?></td>
 
                                             <td style="text-align:center">
                                                 <a href=""><i data-feather="eye" style="margin-right:10%"></i></a>
                                                 <!-- <a href=" #"><img src="img/edit-2.png"></a> -->
-                                                <a href="database/delDataProfil.php?id=<?php echo $d['PROFILYAYASAN_ID']; ?>"
+                                                <a href="database/delDataPengumuman.php?id=<?php echo $d['PENGUMUMAN_ID']; ?>"
                                                     onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
                                                         data-feather="trash-2"
                                                         style="margin-right:2%; color:red"></i></a>
