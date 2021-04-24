@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon_2.png">
+    <link rel="shortcut icon" type="image/x-icon" href="">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-sm-6 login-section-wrapper">
                     <div class="brand-wrapper">
-                        <img src="DPUPR/assets/img/logo/logo2.svg" height=50px alt="logo">
+                        <img src="" height=50px alt="logo">
                     </div>
                     <div class="login-wrapper my-auto">
                         <h1 class="login-title">Log in</h1>
@@ -40,7 +40,8 @@
                                 <input type="password" name="password" id="password" class="form-control"
                                     placeholder="masukkan password anda" required>
                             </div>
-                            <input name="login" id="login" class="btn btn-block login-btn" type="submit" style="background-color:#1ab394" value="Masuk">
+                            <input name="login" id="login" class="btn btn-block login-btn" type="submit"
+                                style="background-color:#1ab394" value="Masuk">
                         </form>
 
                         <p class="login-wrapper-footer-text">Tidak punya akun ? <a href="register.php"
@@ -48,14 +49,14 @@
                     </div>
                 </div>
                 <div class="col-sm-6 px-0 d-none d-sm-block">
-                    <img src="login/assets/images/login.jpg" alt="login image" class="login-img">
+                    <img src="" alt="login image" class="login-img">
                 </div>
 
 
             </div>
         </div>
 
-   \
+        \
     </main>
     <script type="text/javascript" src="alert/alert/js/jquery-1.9.1.min.js"></script>
     <script src="alert/alert/js/sweetalert.min.js"></script>

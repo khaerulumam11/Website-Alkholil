@@ -17,18 +17,15 @@ include 'config.php';
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = "select * from tb_users where username='" . $username . "' and password='" . $password . "'  and statusUser ='1' limit 1";
+$sql = "select * from admin where USERNAME='" . $username . "' and PASSWORD='" . $password . "' limit 1";
 $hasil = mysqli_query( $mysqli, $sql );
 $jumlah = mysqli_num_rows( $hasil );
 
 if ( $jumlah > 0 ) {
     $row = mysqli_fetch_assoc( $hasil );
-    $_SESSION['id_user'] = $row['id_user'];
-    $_SESSION['username'] = $row['username'];
-    $_SESSION['nama'] = $row['nama'];
-    $_SESSION['role'] = $row['role'];
-    $_SESSION['foto'] = $row['foto'];
-
+    $_SESSION['id_user'] = $row['ADMIN_ID'];
+    $_SESSION['username'] = $row['USERNAME'];
+   
      echo "
 	  <script type='text/javascript'>
 		

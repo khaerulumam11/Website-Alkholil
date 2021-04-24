@@ -8,10 +8,6 @@ if (!isset($_SESSION["username"])) {
 
 $id_user = $_SESSION["id_user"];
 $username = $_SESSION["username"];
-$nama = $_SESSION["nama"];
-$role = $_SESSION["role"];
-$foto_user = $_SESSION["foto"];
-
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +28,7 @@ $foto_user = $_SESSION["foto"];
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon_2.png">
+    <link rel="shortcut icon" type="image/x-icon" href="">
 
     <style>
     .dropdown-content {
@@ -65,103 +61,81 @@ $foto_user = $_SESSION["foto"];
 </head>
 
 <body>
-
     <div id="wrapper">
 
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
-                        <div class="dropdown profile-element"> <span>
-                                <?php echo "<img alt='image' src='dokumen/$foto_user' class='img-circle' width='50px'/>"; ?>
+                        <div class=""> <span>
                             </span>
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="clear"> <span class="block m-t-xs"> <strong
-                                            class="font-bold"><?php echo $nama; ?></strong>
-                                    </span> <span class="text-muted text-xs block"><?php echo $role; ?> </span> </span>
+
+                            <a href="dashboard.php"><label for="" style="font-size:20px; color:#999999">Selamat
+                                    Datang</label>
+                                <strong class="font-bold">
+                                    <label for="" style="font-size:20px; color:black"><?php echo $username?></label>
+                                </strong>
                             </a>
+
                             <!-- <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="mailbox.html">Mailbox</a></li>
-                                <li class="divider"></li>
-                                <li><a href="login.html">Logout</a></li>
-                            </ul> -->
+                                    <li><a href="profile.html">Profile</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                    <li><a href="mailbox.html">Mailbox</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="login.html">Logout</a></li>
+                                </ul> -->
                         </div>
                         <div class="logo-element">
                             <img src="img/favicon_2.png">
                         </div>
                     </li>
                     <li class="active">
-                        <a href="dashboard.php"><i class="fa fa-th"></i> <span class="nav-label">Dashboards</span></a>
-
+                        <a href="dashboard.php"><i class=""></i> <strong><span
+                                    class="nav-label">Master</span></a></strong>
+                        <ul class="nav nav-second-level" style="background-color:white">
+                            <li class="">
+                                <a href="dataBeranda.php"><span class="nav-label">Data
+                                        Beranda</span></a>
+                            </li>
+                            <li>
+                                <a href="profilYayasan.php"> <span class="nav-label">Profil
+                                        Yayasan</span></a>
+                            </li>
+                            <li>
+                                <a href="visimisi.php"><span class="nav-label">Visi & Misi</span></a>
+                            </li>
+                            <li>
+                                <a href="program.php"><span class="nav-label">Program</span></a>
+                            </li>
+                            <li>
+                                <a href="fasilitas.php"><span class="nav-label">Fasilitas</span></a>
+                            </li>
+                            <li>
+                                <a href="pengumuman.php"><span class="nav-label">Pengumuman</span></a>
+                            </li>
+                            <li>
+                                <a href="donasi.php"><span class="nav-label">Donasi</span></a>
+                            </li>
+                            <li>
+                                <a href="kontak.php"><span class="nav-label">Kontak</span></a>
+                            </li>
+                            <li>
+                                <a href="userLogin.php"><span class="nav-label">User Login</span></a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="bangunan.php"><i class="fa fa-building-o"></i> <span class="nav-label">Bangunan
-                                Gedung</span></a>
-                    </li>
-                    <li>
-                        <a href="opd.php"><i class="fa fa-database"></i> <span class="nav-label">OPD</span></a>
-                    </li>
-                    <li>
-                        <a href="instansi.php"><i class="fa fa-institution"></i> <span
-                                class="nav-label">Instansi</span></a>
-                    </li>
-                    <li>
-                        <a href="fungsi.php"><i class="fa fa-diamond"></i> <span class="nav-label">Fungsi</span></a>
-                    </li>
-                    <?php
-                    if($role == "Super Admin"){
-                    ?>
-                    <li>
-                        <a href="pengguna.php"><i class="fa fa-user"></i> <span class="nav-label">Pengguna</span></a>
-                    </li>
-                    <?php
-                    }
-                    ?>
-
 
                 </ul>
 
             </div>
         </nav>
-
-        <?php
-                
-                            
-                            include 'database/config.php';
-                        
-                            // Fetech user data based on id
-                            $result4 = mysqli_query($mysqli, "SELECT * FROM tb_bagunan");
-
-                            $row_cnt_bangunan = mysqli_num_rows( $result4 );
-
-                            $result2 = mysqli_query($mysqli, "SELECT * FROM tb_users where role != 'Super Admin' ");
-
-                            $row_cnt_penanganan = mysqli_num_rows( $result2 );
-
-                            $result = mysqli_query($mysqli, "SELECT * FROM tb_instansi");
-
-                            $row_cnt_instansi = mysqli_num_rows( $result );
-
-                             $result3 = mysqli_query($mysqli, "SELECT * FROM tb_fungsi");
-
-                            $row_cnt_fungsi = mysqli_num_rows( $result3 );
-                          
-        ?>
-
-        <div id="page-wrapper" class="gray-bg">
+        <div id="page-wrapper" class="white-bg">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                    <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
-                                class="fa fa-bars"></i> </a>
 
-                    </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
-                            <span class="m-r-sm text-muted welcome-message">Dinas Pengerjaan Umum & Penataan
-                                Ruang</span>
+                            <span class="m-r-sm text-muted welcome-message">SMA ALKHOLIL</span>
                         </li>
 
                         <li>
@@ -173,133 +147,23 @@ $foto_user = $_SESSION["foto"];
 
                 </nav>
             </div>
+            <div class="row wrapper border-bottom page-heading" style="background-color:white">
+                <div class="col-lg-12">
+                    <label for="" style="font-size:35px;margin-top:2%">Hai, </label> <label for=""
+                        style="font-size:35px;color:#1cfc58"> <?php echo $_SESSION["username"] ?></label>
+                    <label for="" style="font-size:35px">!</label>
 
-            <div class="wrapper wrapper-content animated fadeInRight">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-
-                                <h5>Bangunan</h5>
-                            </div>
-                            <div class="ibox-content">
-
-                                <h1 class="" style="color:#1C84C6;font-size:50px;font-weight:20px">
-                                    <?php echo $row_cnt_bangunan; ?></h1>
-
-
-                                <!-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> -->
-                                <small>Total Bangunan</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-
-                                <h5>Admin</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="" style="color:#F8AC59; font-size:50px; font-weight:20px">
-                                    <?php echo $row_cnt_penanganan; ?></h1>
-                                <small>Total Admin</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-
-                                <h5>Fungsi</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="" style="color:#ED5565; font-size:50px; font-weight:20px">
-                                    <?php echo $row_cnt_fungsi; ?></h1>
-                                <!-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> -->
-                                <small>Total Fungsi</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-
-                                <h5>Instansi</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <h1 class="" style="color:#2F4050; font-size:50px; font-weight:20px">
-                                    <?php echo $row_cnt_instansi; ?></h1>
-                                <!-- <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i> -->
-                                <small>Total Instansi</small>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>Log Activity</h5>
-
-                            </div>
-                            <div class="ibox-content">
-                                <table class="table table-striped table-hover dataTables-example">
-                                    <thead>
-                                        <tr>
-
-                                            <th>Date</th>
-                                            <th>User</th>
-                                            <th>Deksripsi</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php 
-                                         $result5 = mysqli_query($mysqli, "SELECT * FROM tb_log_activity ORDER BY tb_log_activity.date_added DESC");
-
-                                         while ($data5 = mysqli_fetch_array($result5)) {
-                                             $user = $data5['nama_user'];
-                                             $deskripsi = $data5['deskripsi'];
-                                             $date = $data5['date_added'];
-                                             $status = $data5['status'];
-                                             $colorStatus ="";
-
-                                             if ($status == 'tambah'){
-                                                 $colorStatus = "label-primary";
-                                             } else if ($status == "ubah"){
-                                                 $colorStatus = "label-warning";
-                                             } else {
-                                                 $colorStatus = "label-danger";
-                                             }
-
-                                        ?>
-                                        <tr>
-
-
-                                            <td><i class="fa fa-clock-o"></i> <?php echo $date;?></td>
-                                            <td><?php echo $user;?></td>
-                                            <td class="text-black"> <?php echo $deskripsi;?>
-                                            </td>
-                                            <td><span class="label <?php echo $colorStatus;?>"
-                                                    style="width:100px"><?php echo $status;?> </span>
-                                            </td>
-                                        </tr>
-                                        <?php } ?>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <h1>sebagai Admin anda dapat melakukan pengelolaan data secara berkala untuk ditampilkan pada
+                        website</h1>
+                    <h1>Panduan Penggunaan website dapat diunduh sebagai berikut</h1>
+                    <a href="https://www.google.com"><label for="" style="font-size:25px;color:#1cfc58"> Manual
+                            Book Admin</label></a>
                 </div>
             </div>
+
+
         </div>
     </div>
-
-    </div>
-    </div>
-
-
 
     <!-- Mainly scripts -->
     <script src="js/jquery-3.1.1.min.js"></script>
@@ -312,6 +176,8 @@ $foto_user = $_SESSION["foto"];
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+
 
     <!-- Page-Level Scripts -->
     <script>

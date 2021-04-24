@@ -1,7 +1,7 @@
 <?php
 
 $databaseHost = 'localhost';
-$databaseName = 'db_bppd';
+$databaseName = 'db_alkholil';
 $databaseUsername = 'root';
 $databasePassword = '';
 

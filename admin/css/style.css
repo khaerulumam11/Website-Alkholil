@@ -39,25 +39,27 @@ h5 {
   font-weight: 600;
 }
 .nav > li > a {
-  color: #000000;
+  color: #A6a6a6;
   font-weight: 600;
+  font-size: medium;
   padding: 14px 20px 14px 25px;
 }
 .nav.navbar-right > li > a {
   color: #999c9e;
 }
 .nav > li.active > a {
-  color: #ffffff;
+  color: black;
+  font-size: large;
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus {
-  background-color: #293846;
-  color: white;
+  background-color: transparent;
+  color: black;
 }
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
-  background: #fff;
+  background: black;
 }
 .nav.navbar-top-links > li > a:hover,
 .nav.navbar-top-links > li > a:focus {
@@ -103,7 +105,7 @@ h5 {
 }
 .dropdown-menu > li > a {
   border-radius: 3px;
-  color: inherit;
+  color: black;
   line-height: 25px;
   margin: 4px;
   text-align: left;
@@ -112,7 +114,7 @@ h5 {
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:focus,
 .dropdown-menu > .active > a:hover {
-  color: #fff;
+  color: black;
   text-decoration: none;
   background-color: #1ab394;
   outline: 0;
@@ -181,7 +183,9 @@ ul.nav-second-level {
 }
 .nav > li.active {
   border-left: 4px solid #19aa8d;
-  background: #293846;
+  background: #ffffff;
+   font-size: medium;
+  color:black;
 }
 .nav.nav-second-level > li.active {
   border: none;
