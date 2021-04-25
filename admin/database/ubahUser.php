@@ -23,7 +23,7 @@ $create_time=date("Y-m-d H:i:s",time());
 // $deskripsi_log = 'Menambahkan Data Penanganan';
 // $result_log = mysqli_query( $mysqli, "INSERT INTO tb_log_activity (`nama_user`, `deskripsi`, `status`) VALUES ('$nama_user','$deskripsi_log','tambah')" );
 
- $result = mysqli_query( $mysqli, "UPDATE `admin` SET `USERNAME`='$username',`PASSWORD`='$password' WHERE ADMIN_ID='$id'" );
+ $result = mysqli_query( $mysqli, "UPDATE `admin` SET `USERNAME`='$username',`PASSWORD`='$password',`UPDATE_TIME`='$create_time' WHERE ADMIN_ID='$id'" );
 
 // Show message when user added
 if ( $result) {
