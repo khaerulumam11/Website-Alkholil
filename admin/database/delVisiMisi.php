@@ -33,7 +33,7 @@ if ( $result2 ) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Visi Berhasil Dihapus',
+				title: 'Data Visi Misi Berhasil Dihapus',
 				type: 'success',
 				timer: 1500,
 				showConfirmButton: true
@@ -48,7 +48,7 @@ if ( $result2 ) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Visi Gagal Dihapus',
+				title: 'Data Visi Misi Gagal Dihapus',
 				type: 'error',
 				timer: 1500,
 				showConfirmButton: true

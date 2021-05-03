@@ -13,8 +13,8 @@ session_start();
 include 'config.php';
 
 // form penanganan
-$deskripsi = $_POST['deskripsi'];
-
+$deskripsiUmum = $_POST['deskripsi'];
+$id = $_GET['id'];
 //$dokumen_pena = 'dokumen';
 
 $create_time=date("Y-m-d H:i:s",time());
@@ -22,7 +22,7 @@ $create_time=date("Y-m-d H:i:s",time());
 // $deskripsi_log = 'Menambahkan Data Penanganan';
 // $result_log = mysqli_query( $mysqli, "INSERT INTO tb_log_activity (`nama_user`, `deskripsi`, `status`) VALUES ('$nama_user','$deskripsi_log','tambah')" );
 
-$result = mysqli_query( $mysqli, "INSERT INTO profilyayasan( `DESKRIPSI`,`CREATE_TIME`) VALUES ('$deskripsi','$create_time')" );
+ $result = mysqli_query( $mysqli, "UPDATE `profilyayasan` SET `DESKRIPSI`='$deskripsiUmum',`UPDATE_TIME`='$create_time' WHERE PROFILYAYASAN_ID='$id'" );
 
 // Show message when user added
 if ( $result) {
@@ -30,14 +30,14 @@ if ( $result) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Profil Berhasil Ditambahkan',
+				title: 'Data Profil Yayasan Berhasil Diubah',
 				type: 'success',
 				timer: 1500,
 				showConfirmButton: true
 			});		
 		},20);	
 	window.setTimeout(function(){ 
-			window.location.replace('../profilYayasan.php');
+			window.location.replace('../profilyayasan.php');
 		} ,1500);
 	  </script>";
 } else {
@@ -45,7 +45,7 @@ if ( $result) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Profil Gagal Ditambahkan',
+				title: 'Data Profil Yayasan Gagal Diubah',
 				type: 'error',
 				timer: 1500,
 				showConfirmButton: true

@@ -255,7 +255,8 @@ $username = $_SESSION["username"];
                                             <td><?php echo $d['GAMBAR']; ?></td>
 
                                             <td style="text-align:center">
-                                                <a href=""><i data-feather="eye" style="margin-right:10%"></i></a>
+                                                <a href="editPengumuman.php?id=<?php echo $d['PENGUMUMAN_ID']; ?>"><i
+                                                        data-feather="edit-2" style="margin-right:10%"></i></a>
                                                 <!-- <a href=" #"><img src="img/edit-2.png"></a> -->
                                                 <a href="database/delDataPengumuman.php?id=<?php echo $d['PENGUMUMAN_ID']; ?>"
                                                     onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i

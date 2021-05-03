@@ -19,7 +19,7 @@ $username = $_SESSION["username"];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Data Beranda</title>
+    <title>Visi Misi</title>
     <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@ $username = $_SESSION["username"];
                         <a href="dashboard.php"><i class=""></i> <strong><span
                                     class="nav-label">Master</span></a></strong>
                         <ul class="nav nav-second-level" style="background-color:white">
-                            <li class="active">
+                            <li class="">
                                 <a href="dataBeranda.php"><span class="nav-label">Data
                                         Beranda</span></a>
                             </li>
@@ -108,7 +108,7 @@ $username = $_SESSION["username"];
                                 <a href="profilYayasan.php"> <span class="nav-label">Profil
                                         Yayasan</span></a>
                             </li>
-                            <li>
+                            <li class="active">
                                 <a href="visimisi.php"><span class="nav-label">Visi & Misi</span></a>
                             </li>
                             <li>
@@ -157,7 +157,7 @@ $username = $_SESSION["username"];
 
             <div class="row wrapper border-bottom page-heading">
                 <div class="col-lg-12">
-                    <h2 style="margin-top:3%"><b>Data Beranda</b></h2>
+                    <h2 style="margin-top:3%"><b>Visi Misi</b></h2>
 
                 </div>
                 <div class="col-lg-2">
@@ -170,31 +170,34 @@ $username = $_SESSION["username"];
                         <div class="ibox float-e-margins">
 
                             <div class="ibox-content">
-                                <label style="font-size:20px; margin-bottom:-5%" for="">Tambahkan Data</label>
+                                <label style="font-size:20px; margin-bottom:-5%" for="">Edit Data</label>
                                 <hr>
-                                <form name="form1" id="form" method="post" action="database/prosesAddBeranda.php"
+                                <?php
+include 'database/config.php';
+$id = $_GET['id'];
+$sql = "SELECT VISI.VISI_ID as PRIMARY_ID,VISI.VISI, MISI.MISI_ID, MISI.MISI, MISI.VISI_ID FROM visi LEFT OUTER JOIN misi ON visi.VISI_ID=misi.VISI_ID ORDER BY visi.CREATE_TIME DESC";
+$hasil = mysqli_query( $mysqli, $sql );
+   while ( $d = mysqli_fetch_array( $hasil ) ) {
+       ?>
+                                <form name="form1" id="form" method="post"
+                                    action="database/updateVisiMisi.php?id=<?php echo $d['PRIMARY_ID']; ?>"
                                     enctype="multipart/form-data" class="form-horizontal">
 
+
                                     <div class="form-group">
-                                        <label class="col-lg-2 control-label">Judul* </label>
-                                        <div class="col-lg-8"><input id="judul" name="judul" type="text"
-                                                class="form-control required">
+                                        <label class="col-lg-2 control-label">Visi* </label>
+                                        <div class="col-lg-8"><input id="visi" name="visi" type="text"
+                                                class="form-control required" value="<?php echo $d['VISI']; ?>">
                                         </div>
                                     </div>
 
-                                    <div class="form-group"><label class="col-lg-2 control-label">Profil Singkat*
+                                    <div class="form-group"><label class="col-lg-2 control-label">Misi*
                                         </label>
                                         <div class="col-lg-8">
-                                            <textarea id="editor2" style="height:50%" name="profile" rows="10" cols="50"
-                                                class="form-control"></textarea>
+                                            <textarea id="editor2" name="misi"
+                                                class="form-control"><?php echo $d['MISI']; ?></textarea>
 
                                             <!-- <input id="penjelasan" name="penjelasan" type="text" class="form-control"> -->
-                                        </div>
-                                    </div>
-                                    <div class="form-group"><label class="col-lg-2 control-label">Gambar</label>
-                                        <div class="col-lg-8">
-                                            <input id="foto_penanganan" name="foto_beranda" type="file" accept="image/*"
-                                                class="form-control">
                                         </div>
                                     </div>
 
@@ -208,70 +211,11 @@ $username = $_SESSION["username"];
                                     </div>
                                 </form>
 
+                                <?php }?>
 
                             </div>
                         </div>
-                        <div class="ibox-content">
-                            <label style="font-size:20px; margin-bottom:-5%" for="">Pencarian</label>
-                            <hr>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover dataTables-example">
 
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align:center">No</th>
-                                            <th style="text-align:center">Judul</th>
-                                            <th style="text-align:center">Profil</th>
-                                            <th style="text-align:center">Gambar</th>
-                                            <th style="text-align:center">Aksi</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            include 'database/config.php';
-                                            $no = 1;
-                                            $data = mysqli_query($mysqli, "select * from beranda");
-                                            while ($d = mysqli_fetch_array($data)) {
-                                            ?>
-                                        <tr class="gradeX">
-                                            <td style="text-align:center">
-                                                <?php echo $no?></td>
-
-                                            <td><?php echo $d['JUDUL']; ?></td>
-                                            <td><?php echo $d['PROFIL']; ?></td>
-                                            <td><?php echo $d['GAMBAR']; ?></td>
-
-                                            <td>
-                                                <a href="editBeranda.php?id=<?php echo $d['BERANDA_ID']; ?>"><i
-                                                        data-feather="edit-2" style="margin-right:10%"></i></a>
-                                                <!-- <a href=" #"><img src="img/edit-2.png"></a> -->
-                                                <a href="database/delDataBeranda.php?id=<?php echo $d['BERANDA_ID']; ?>"
-                                                    onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
-                                                        data-feather="trash-2"
-                                                        style="margin-right:2%; color:red"></i></a>
-
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        $no++;
-                                            }
-                                            ?>
-                                    </tbody>
-                                    <!-- <tfoot>
-                                            <tr>
-                                                <th>ID Bangunan</th>
-                                                <th>Nama</th>
-                                                <th>Fungsi</th>
-                                                <th>ODP</th>
-                                                <th>Didirikan</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot> -->
-                                </table>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>

@@ -234,7 +234,8 @@ $username = $_SESSION["username"];
                                             <td><?php echo $d['DESKRIPSI']; ?></td>
                                             <td><?php echo $d['PROGRAM']; ?></td>
                                             <td style="text-align:center">
-                                                <a href=""><i data-feather="eye" style="margin-right:10%"></i></a>
+                                                <a href="editProgram.php?id=<?php echo $d['PROGRAM_ID']; ?>"><i
+                                                        data-feather="edit-2" style="margin-right:10%"></i></a>
                                                 <!-- <a href=" #"><img src="img/edit-2.png"></a> -->
                                                 <a href="database/delDataProfil.php?id=<?php echo $d['PROGRAM_ID']; ?>"
                                                     onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i

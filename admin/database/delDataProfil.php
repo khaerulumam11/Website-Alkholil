@@ -21,7 +21,7 @@ $id = $_GET['id'];
 // $result_log = mysqli_query( $mysqli, "INSERT INTO tb_log_activity (`nama_user`, `deskripsi`, `status`) VALUES ('$nama_user','$deskripsi_log','hapus')" );
 
 // menghapus data dari database
-$result = mysqli_query( $mysqli, "delete from program where PROGRAM_ID='$id'" );
+$result = mysqli_query( $mysqli, "delete from profilyayasan where PROFILYAYASAN_ID='$id'" );
 
 // mengalihkan halaman kembali ke index.php
 if ( $result ) {
@@ -29,7 +29,7 @@ if ( $result ) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Program Berhasil Dihapus',
+				title: 'Data Profil Yayasan Berhasil Dihapus',
 				type: 'success',
 				timer: 1500,
 				showConfirmButton: true
@@ -44,7 +44,7 @@ if ( $result ) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Program Gagal Dihapus',
+				title: 'Data Profil Yayasan Gagal Dihapus',
 				type: 'error',
 				timer: 1500,
 				showConfirmButton: true

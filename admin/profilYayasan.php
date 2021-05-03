@@ -221,15 +221,15 @@ $username = $_SESSION["username"];
                                             while ($d = mysqli_fetch_array($data)) {
                                             ?>
                                         <tr class="gradeX">
-                                            <td style="text-align:center"><a style="text-decoration:none"
-                                                    href="bangunan_detail.php?id_bangunan=<?php echo $d['BERANDA_ID']; ?>">
-                                                    <?php echo $no?></a></td>
+                                            <td style="text-align:center"><?php echo $no?></td>
 
                                             <td><?php echo $d['DESKRIPSI']; ?></td>
 
 
                                             <td style="text-align:center">
-                                                <a href=""><i data-feather="eye" style="margin-right:10%"></i></a>
+                                                <a
+                                                    href="editProfilYayasan.php?id=<?php echo $d['PROFILYAYASAN_ID']; ?>"><i
+                                                        data-feather="edit-2" style="margin-right:10%"></i></a>
                                                 <!-- <a href=" #"><img src="img/edit-2.png"></a> -->
                                                 <a href="database/delDataProfil.php?id=<?php echo $d['PROFILYAYASAN_ID']; ?>"
                                                     onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i

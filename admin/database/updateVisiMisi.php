@@ -13,8 +13,9 @@ session_start();
 include 'config.php';
 
 // form penanganan
-$deskripsi = $_POST['deskripsi'];
-
+$visi = $_POST['visi'];
+$misi = $_POST['misi'];
+$id = $_GET['id'];
 //$dokumen_pena = 'dokumen';
 
 $create_time=date("Y-m-d H:i:s",time());
@@ -22,22 +23,25 @@ $create_time=date("Y-m-d H:i:s",time());
 // $deskripsi_log = 'Menambahkan Data Penanganan';
 // $result_log = mysqli_query( $mysqli, "INSERT INTO tb_log_activity (`nama_user`, `deskripsi`, `status`) VALUES ('$nama_user','$deskripsi_log','tambah')" );
 
-$result = mysqli_query( $mysqli, "INSERT INTO profilyayasan( `DESKRIPSI`,`CREATE_TIME`) VALUES ('$deskripsi','$create_time')" );
+ $result = mysqli_query( $mysqli, "UPDATE `visi` SET `VISI`='$visi',`UPDATE_TIME`='$create_time' WHERE VISI_ID='$id'" );
 
 // Show message when user added
 if ( $result) {
+	$result2 = mysqli_query( $mysqli, "UPDATE `misi` SET `MISI`='$misi',`UPDATE_TIME`='$create_time' WHERE VISI_ID='$id'" );
+}
+if ($result2){
     echo "
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Profil Berhasil Ditambahkan',
+				title: 'Data Visi Misi Berhasil Diubah',
 				type: 'success',
 				timer: 1500,
 				showConfirmButton: true
 			});		
 		},20);	
 	window.setTimeout(function(){ 
-			window.location.replace('../profilYayasan.php');
+			window.location.replace('../visimisi.php');
 		} ,1500);
 	  </script>";
 } else {
@@ -45,7 +49,7 @@ if ( $result) {
 	  <script type='text/javascript'>
 		setTimeout(function () { 	
 			swal({
-				title: 'Data Profil Gagal Ditambahkan',
+				title: 'Data Visi Misi Gagal Diubah',
 				type: 'error',
 				timer: 1500,
 				showConfirmButton: true

@@ -224,21 +224,20 @@ $username = $_SESSION["username"];
                                         <?php
                                             include 'database/config.php';
                                             $no = 1;
-                                            $data = mysqli_query($mysqli, "SELECT VISI.VISI_ID,VISI.VISI, MISI.MISI_ID, MISI.MISI, MISI.VISI_ID FROM visi LEFT OUTER JOIN misi ON visi.VISI_ID=misi.VISI_ID ORDER BY visi.CREATE_TIME DESC");
+                                            $data = mysqli_query($mysqli, "SELECT VISI.VISI_ID as PRIMARY_ID,VISI.VISI, MISI.MISI_ID, MISI.MISI, MISI.VISI_ID FROM visi LEFT OUTER JOIN misi ON visi.VISI_ID=misi.VISI_ID ORDER BY visi.CREATE_TIME DESC");
                                             while ($d = mysqli_fetch_array($data)) {
                                             ?>
                                         <tr class="gradeX">
-                                            <td style="text-align:center"><a style="text-decoration:none"
-                                                    href="bangunan_detail.php?id_bangunan=<?php echo $d['BERANDA_ID']; ?>">
-                                                    <?php echo $no?></a></td>
+                                            <td style="text-align:center"><?php echo $no?></td>
 
                                             <td><?php echo $d['VISI']; ?></td>
                                             <td><?php echo $d['MISI']; ?></td>
 
                                             <td style="text-align:center">
-                                                <a href=""><i data-feather="eye" style="margin-right:10%"></i></a>
+                                                <a href="editVisiMisi.php?id=<?php echo $d['PRIMARY_ID']; ?>"><i
+                                                        data-feather="edit-2" style="margin-right:10%"></i></a>
                                                 <!-- <a href=" #"><img src="img/edit-2.png"></a> -->
-                                                <a href="database/delVisiMisi.php?id=<?php echo $d['VISI_ID']; ?>"
+                                                <a href="database/delVisiMisi.php?id=<?php echo $d['PRIMARY_ID']; ?>"
                                                     onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
                                                         data-feather="trash-2"
                                                         style="margin-right:2%; color:red"></i></a>

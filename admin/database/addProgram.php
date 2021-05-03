@@ -37,7 +37,7 @@ if ( $result) {
 			});		
 		},20);	
 	window.setTimeout(function(){ 
-			window.location.replace('../dataBeranda.php');
+			window.location.replace('../program.php');
 		} ,1500);
 	  </script>";
 } else {
