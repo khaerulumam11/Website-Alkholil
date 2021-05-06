@@ -42,7 +42,7 @@ if ( $result) {
 			});		
 		},20);	
 	window.setTimeout(function(){ 
-			window.location.replace('../profilYayasan.php');
+			window.location.replace('../beranda.php');
 		} ,1500);
 	  </script>";
 } else {
