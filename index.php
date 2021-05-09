@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>FlexStart Bootstrap Template - Index</title>
+    <title>Yayasan Pendidikan Islam Al-Khalil</title>
     <meta content="" name="description">
 
     <meta content="" name="keywords">
@@ -62,21 +62,21 @@
 
             <nav id='navbar' class='navbar'>
                 <ul>
-                    <li><a class='nav-link scrollto active' href='#hero'>Beranda</a></li>
+                    <li><a class='nav-link scrollto active' href='#beranda'>Beranda</a></li>
                     <li class='dropdown'><a href='#'><span>Profil</span> <i class='bi bi-chevron-down'></i></a>
                         <ul>
-                            <li><a href='#'>Profil Yayasan</a></li>
-                            <li><a href='#'>Visi & Misi</a></li>
+                            <li><a href='#profil'>Profil Yayasan</a></li>
+                            <li><a href='#visimisi'>Visi & Misi</a></li>
                         </ul>
                     </li>
                     <li class='dropdown'><a href='#'><span>Pelayanan</span> <i class='bi bi-chevron-down'></i></a>
                         <ul>
-                            <li><a href='#'>Program</a></li>
-                            <li><a href='#'>Fasilitas</a></li>
+                            <li><a href='#program'>Program</a></li>
+                            <li><a href='#fasilitas'>Fasilitas</a></li>
                         </ul>
                     </li>
-                    <li><a class='nav-link scrollto' href='#services'>Pengumuman</a></li>
-                    <li><a class='nav-link scrollto' href='#portfolio'>Donasi</a></li>
+                    <li><a class='nav-link scrollto' href='#pengumuman'>Pengumuman</a></li>
+                    <li><a class='nav-link scrollto' href='#donasi'>Donasi</a></li>
                     <li><a class='nav-link scrollto' href='#contact'>Kontak</a></li>
                 </ul>
                 <i class='bi bi-list mobile-nav-toggle'></i>
@@ -87,7 +87,7 @@
 
 
     <!-- ======= Hero Section ======= -->
-    <section id='hero' class='hero d-flex align-items-center'>
+    <section id='beranda' class='hero d-flex align-items-center'>
 
         <div class='container'>
             <div class='row'>
@@ -333,6 +333,220 @@
 
             </div>
         </section><!-- End Counts Section -->
+
+        <!-- ======= Recent Blog Posts Section ======= -->
+        <section id="recent-blog-posts" class="recent-blog-posts">
+
+            <div class="container" data-aos="fade-up">
+
+                <header class="section-header">
+                    <p>Pengumuman</p>
+                </header>
+
+                <div class="row">
+                    <?php
+                                            include 'admin/database/config.php';
+                                            $data = mysqli_query($mysqli, "SELECT * from pengumuman ORDER BY CREATE_TIME DESC");
+                                            while ($d = mysqli_fetch_array($data)) {
+                                            
+                                            ?>
+                    <div class="col-lg-4">
+                        <div class="post-box">
+                            <div class="post-img"><img src="dokumen/fotoPengumuman/<?php echo $d['GAMBAR']?>"
+                                    class="img-fluid" alt=""></div>
+                            <span class="post-date"><?php echo date("d M Y", strtotime($d['TGL_PENGUMUMAN']))?></span>
+                            <h3 class="post-title"><?php echo $d['JUDUL_PENGUMUMAN']?>
+                            </h3>
+                            <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Baca lebih
+                                    lanjut</span><i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <?php } ?>
+                </div>
+
+            </div>
+
+        </section><!-- End Recent Blog Posts Section -->
+
+        <section id="features" class="features">
+
+            <div style="margin-top:-1%" class="row feature-icons" data-aos="fade-up">
+                <h3>Donasi</h3>
+
+                <div class="row">
+
+                    <div class="col-xl-4 text-center" data-aos="fade-right" data-aos-delay="100">
+                        <img src="assets/img/features-3.png" class="img-fluid p-4" alt="">
+                    </div>
+
+                    <div class="col-xl-8 d-flex content">
+
+                        <div class="row align-self-center gy-4" style="margin-right:5%">
+                            <?php
+                                            include 'admin/database/config.php';
+                                            $data = mysqli_query($mysqli, "SELECT * from donasi ORDER BY CREATE_TIME DESC");
+                                            while ($d = mysqli_fetch_array($data)) {
+                                            
+                                            ?>
+                            <label style="text-align:justify;"> <?php echo $d['DESKRIPSI_UMUM']?></label>
+                            <br>
+                            <b><label for="">Donasi melalui</label></b>
+
+                            <div class="col-md-6 icon-box" data-aos="fade-up">
+                                <i class="ri-line-chart-line"></i>
+                                <div>
+                                    <h4><?php echo $d['DESKRIPSI1']?></h4>
+                                    <p><?php echo $d['JUMLAH1']?></p>
+                                    <a href="">
+                                        <labelS>QR Code</label>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+                                <i class="ri-stack-line"></i>
+                                <div>
+                                    <h4><?php echo $d['DESKRIPSI2']?></h4>
+                                    <p><?php echo $d['JUMLAH2']?></p>
+                                    <a href="">
+                                        <labelS>QR Code</label>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+                                <i class="ri-brush-4-line"></i>
+                                <div>
+                                    <h4><?php echo $d['DESKRIPSI3']?></h4>
+                                    <p><?php echo $d['JUMLAH3']?></p>
+                                    <a href="">
+                                        <labelS>QR Code</label>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
+                                <i class="ri-magic-line"></i>
+                                <div>
+                                    <h4><?php echo $d['DESKRIPSI4']?></h4>
+                                    <p><?php echo $d['JUMLAH4']?></p>
+                                    <a href="">
+                                        <labelS>QR Code</label>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <?php } ?>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div><!-- End Feature Icons -->
+
+            </div>
+
+        </section><!-- End Features Section -->
+
+
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact" style="margin-top:5%">
+
+            <div class="container" data-aos="fade-up">
+
+                <header class="section-header">
+                    <h2>Kontak</h2>
+                    <p>Kontak Kami</p>
+                </header>
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-6">
+
+                        <div class="row gy-4">
+                            <?php
+                                            include 'admin/database/config.php';
+                                            $data = mysqli_query($mysqli, "SELECT * from kontak ORDER BY CREATE_TIME DESC LIMIT 1");
+                                            while ($d = mysqli_fetch_array($data)) {
+                                            
+                                            ?>
+                            <div class="col-md-6">
+                                <div class="info-box">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <h3>Alamat</h3>
+                                    <p><?php echo $d['ALAMAT']?></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-box">
+                                    <i class="bi bi-telephone"></i>
+                                    <h3>Telepon</h3>
+                                    <p><?php echo $d['TELEPON']?></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-box">
+                                    <i class="bi bi-envelope"></i>
+                                    <h3>Email</h3>
+                                    <p><?php echo $d['EMAIL']?></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-box">
+                                    <i class="bi bi-clock"></i>
+                                    <h3>Jam Operasional</h3>
+                                    <p><?php echo $d['JAMOPERASIONAL']?></p>
+                                </div>
+                            </div>
+
+                            <?php } ?>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+                        <form action="forms/contact.php" method="post" class="php-email-form">
+                            <div class="row gy-4">
+
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control" placeholder="Your Name"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6 ">
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                        required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                        required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Message"
+                                        required></textarea>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <div class="loading">Loading</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                                    <button type="submit">Send Message</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section><!-- End Contact Section -->
         <!-- ======= Values Section ======= -->
         <section id="values" class="values">
 
